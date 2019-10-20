@@ -29,7 +29,7 @@
 
 - name: nginx conf exists on remote host
   become: true
-  copy:
+  template:
     src: nginx.conf
     dest: /tmp/nginx.conf
     owner: root
@@ -59,29 +59,16 @@
   when: not certificates.stat.exists
   register: letsencrypt_tmp_website
 
-- name: a letsencrypt certificate has been delivered
-  become: true
-  docker_container:
-    name: certbot
-    image: certbot/certbot
-    auto_remove: true
-    volumes:
-      - letsencrypt-config:/etc/letsencrypt
-      - letsencrypt-var:/var/lib/letsencrypt
-      - letsencrypt-data:/data/letsencrypt
-    command:
+- set_fact:
+    certbot_cmd:
       - certonly 
+      - --staging
       - --webroot
       - --email
       - "{{ admin_email }}"
       - --agree-tos
       - --no-eff-email
       - --webroot-path=/data/letsencrypt
-      - -d
-      - flexfactory.fr
-      - -d
-      - www.flexfactory.fr
-  when: not certificates.stat.exists
 
 - name: a letsencrypt certificate has been delivered
   become: true
@@ -93,16 +80,8 @@
       - letsencrypt-config:/etc/letsencrypt
       - letsencrypt-var:/var/lib/letsencrypt
       - letsencrypt-data:/data/letsencrypt
-    command:
-      - certonly 
-      - --webroot
-      - --email
-      - "{{ admin_email }}"
-      - --agree-tos
-      - --no-eff-email
-      - --webroot-path=/data/letsencrypt
-      - -d
-      - cloud.tic.sh
+    command: "{{ (certbot_cmd | join(' ')) + ' -d ' + (item.split() | join(' -d ')) }}"
+  loop: "{{ domains }}"
   when: not certificates.stat.exists
 
 - name: temporary http server has been stopped

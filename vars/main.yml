@@ -3,8 +3,7 @@ docker_volumes_path: "/var/lib/docker/volumes"
 admin_email: "tristan@tic.sh"
 
 domains:
-  flexfactory.fr:
-    - flexfactory.fr
-    - www.flexfactory.fr
-  cloud.tic.sh:
-    - cloud.tic.sh
+  - croc.martinade.fr
+    www.croc.martinade.fr
+  - pic.martinade.fr
+    www.pic.martinade.fr
