@@ -1,9 +1,0 @@
-docker_volumes_path: "/var/lib/docker/volumes"
-
-admin_email: "tristan@tic.sh"
-
-domains:
-  - croc.martinade.fr
-    www.croc.martinade.fr
-  - pic.martinade.fr
-    www.pic.martinade.fr

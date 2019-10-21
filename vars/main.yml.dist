@@ -1,0 +1,9 @@
+docker_volumes_path: "/var/lib/docker/volumes"
+
+admin_email: "contact@example.tdl"
+
+domains:
+  - myfirstdomain.tdl
+    www.myfirstdomain.tdl
+
+  - api.myseconddomain.tdl
