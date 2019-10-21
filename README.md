@@ -44,7 +44,7 @@ services:
       - letsencrypt-dh:/etc/ssl/certs
 ```
 
-For mor details, see [this ansible project](https://github.com/0b11stan/ansible-martinade) that use [this docker project](https://github.com/0b11stan/docker-martinade).
+For mor details, see [this ansible project](https://github.com/0b11stan/ansible-martinade) that uses [this docker project](https://github.com/0b11stan/docker-martinade).
 
 ## Roadmap
 
