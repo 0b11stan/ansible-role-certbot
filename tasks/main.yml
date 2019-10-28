@@ -84,3 +84,14 @@
   openssl_dhparam:
     path: "{{ docker_volumes_path }}/letsencrypt-dh/_data/dhparam-2048.pem"
     size: 2048
+
+- name: setup contab for certificate renewal
+  cron:
+    name: "renew ssl certificates"
+    hour: "3"
+    job: >
+      'docker run --rm --name certbot
+        -v letsencrypt-config:/etc/letsencrypt
+        -v letsencrypt-var:/var/lib/letsencrypt
+        -v letsencrypt-data:/data/letsencrypt
+        certbot/certbot renew --webroot -w /data/letsencrypt --quiet'
