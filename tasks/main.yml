@@ -77,7 +77,7 @@
   become: true
   docker_container:
     name: letsencrypt-tmp-website
-    state: stopped
+    state: absent
 
 - name: generate openssl certificate
   become: true
