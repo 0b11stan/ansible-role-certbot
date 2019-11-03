@@ -42,7 +42,7 @@
   become: true
   docker_container:
     name: letsencrypt-tmp-website
-    image: nginx:latest
+    image: nginx
     auto_remove: true
     volumes:
       - /tmp/nginx.conf:/etc/nginx/conf.d/default.conf
