@@ -1,3 +1,13 @@
+- name: required variables are defined
+  assert:
+    that:
+      - item is defined
+    fail_msg: "{{ item }} should be defined"
+    success_msg: "{{ item }} is defined"
+  loop:
+    - domains
+    - admin_email
+
 - name: create required docker volumes
   become: true
   command: "docker volume create {{ item }}"
