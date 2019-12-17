@@ -49,4 +49,4 @@ For mor details, see [this ansible project](https://github.com/0b11stan/ansible-
 ## Roadmap
 
 - [x] Deploy ssl certificates for multiple domains using certbot conainer.
-- [ ] Setup a cron job for automatic renewal of certificates.
+- [x] Setup a cron job for automatic renewal of certificates.
