@@ -69,10 +69,6 @@
       - "--no-eff-email"
       - "--webroot-path=/data/letsencrypt"
 
-- debug:
-    msg: "{{ (certbot_cmd | join(' ')) + ' -d ' + (item.split() | join(' -d ')) }}" 
-  loop: "{{ domains }}"
-
 - name: a letsencrypt certificate has been delivered
   become: true
   docker_container:
